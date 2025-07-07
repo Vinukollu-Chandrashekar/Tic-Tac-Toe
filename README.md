@@ -13,7 +13,8 @@ A simple web-based Tic Tac Toe game built using HTML, CSS, and JavaScript.
 - JavaScript
 
 ## Demo
-Click [here](https://vinukollu-chandrashekar.github.io/Tic-Tac-Toe/) to play the game (after enabling GitHub Pages).
+## Demo  
+👉 [Click here to play the game](https://vinukollu-chandrashekar.github.io/Tic-Tac-Toe/)
 
 ## How to Run
 Just open `Tic-Tac-Toe.html` in your browser.
