@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let boxes = document.querySelectorAll(".box");
-  let newgame = document.querySelector("#newgame");
-  let reset = document.querySelector("#reset");
-  let msg = document.querySelector("#msg");
-  let msgcontainer = document.querySelector(".msg-container");
+  const boxes = document.querySelectorAll(".box");
+  const newgame = document.querySelector("#newgame");
+  const reset = document.querySelector("#reset");
+  const msg = document.querySelector("#msg");
+  const msgcontainer = document.querySelector(".msg-container");
   let playerX = true;
 
-  let winpattern = [
+  const winpattern = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -28,13 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (playerX) {
         box.innerText = "O";
         box.style.color = "blue";
-        playerX = false;
       } else {
         box.innerText = "X";
         box.style.color = "red";
-        playerX = true;
       }
       box.disabled = true;
+      playerX = !playerX;
       checkwinner();
     });
   });
@@ -42,12 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const showwinner = (winner) => {
     msg.innerText = `Congratulations ${winner} won this game.`;
     msgcontainer.classList.remove("hide");
+    disableboxes();
   };
 
-  const disabled = () => {
-    boxes.forEach((box) => {
-      box.disabled = true;
-    });
+  const disableboxes = () => {
+    boxes.forEach((box) => (box.disabled = true));
   };
 
   const enableboxes = () => {
@@ -59,15 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const checkwinner = () => {
     for (let pattern of winpattern) {
-      let posval1 = boxes[pattern[0]].innerText;
-      let posval2 = boxes[pattern[1]].innerText;
-      let posval3 = boxes[pattern[2]].innerText;
-      if (posval1 !== "" && posval2 !== "" && posval3 !== "") {
-        if (posval1 === posval2 && posval2 === posval3) {
-          showwinner(posval1);
-          disabled();
-          break;
-        }
+      const [a, b, c] = pattern;
+      const val1 = boxes[a].innerText;
+      const val2 = boxes[b].innerText;
+      const val3 = boxes[c].innerText;
+
+      if (val1 !== "" && val1 === val2 && val2 === val3) {
+        showwinner(val1);
+        return;
       }
     }
   };
@@ -75,3 +72,4 @@ document.addEventListener("DOMContentLoaded", () => {
   newgame.addEventListener("click", resetgame);
   reset.addEventListener("click", resetgame);
 });
+
